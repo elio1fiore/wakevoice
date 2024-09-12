@@ -21,18 +21,18 @@ class AppRouter extends RootStackRouter {
               path: 'list',
               maintainState: false,
             ),
-            // AutoRoute(
-            //   page: AlarmRoute.page,
-            //   path: 'alarm',
-            // ),
-            // AutoRoute(
-            //   page: EditAlarmRoute.page,
-            //   path: 'alarm-edit',
-            // ),
-            // AutoRoute(
-            //   page: RingAlarmRoute.page,
-            //   path: 'alarm-ring',
-            // ),
+            AutoRoute(
+              page: AlarmRoute.page,
+              path: 'alarm',
+            ),
+            AutoRoute(
+              page: EditAlarmRoute.page,
+              path: 'alarm-edit',
+            ),
+            AutoRoute(
+              page: RingAlarmRoute.page,
+              path: 'alarm-ring',
+            ),
           ],
         ),
         RedirectRoute(path: '*', redirectTo: '/'),

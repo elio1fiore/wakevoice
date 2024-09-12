@@ -1,8 +1,8 @@
-import 'dart:async';
-
+import 'package:alarm/alarm.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:wakevoice/router/app_router.gr.dart';
+import 'package:wakevoice/utils/alarm_permissions.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -14,6 +14,15 @@ class HomePage extends StatefulWidget {
 
 class _HomeScreenState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    if (Alarm.android) {
+      AlarmPermissions.checkAndroidNotificationPermission();
+      AlarmPermissions.checkAndroidScheduleExactAlarmPermission();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       // list of your tab routes
@@ -22,7 +31,7 @@ class _HomeScreenState extends State<HomePage> {
       routes: const [
         InsertRoute(),
         ListRoute(),
-        // AlarmRoute(),
+        AlarmRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
@@ -53,10 +62,10 @@ class _HomeScreenState extends State<HomePage> {
                 label: 'List',
                 icon: Icon(Icons.list),
               ),
-              // BottomNavigationBarItem(
-              //   label: 'Alarm',
-              //   icon: Icon(Icons.alarm),
-              // ),
+              BottomNavigationBarItem(
+                label: 'Alarm',
+                icon: Icon(Icons.alarm),
+              ),
             ],
           ),
         );
