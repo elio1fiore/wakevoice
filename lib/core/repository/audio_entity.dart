@@ -17,10 +17,22 @@ class AudioEntity with _$AudioEntity {
     @TimeOfDayConverter() required TimeOfDay time,
     required String recordingPath,
     required String note,
+    required int dateTime,
   }) = _AudioEntity;
 
   factory AudioEntity.fromJson(Map<String, dynamic> json) =>
       _$AudioEntityFromJson(json);
+
+  Audio toDomain() {
+    return Audio(
+      date: DateTime.fromMicrosecondsSinceEpoch(dateTime),
+      recordingPath: recordingPath,
+      time: time,
+      title: title,
+      id: id,
+      note: note,
+    );
+  }
 
   factory AudioEntity.fromDomain(Audio audio) {
     String formattedDate =
@@ -30,7 +42,10 @@ class AudioEntity with _$AudioEntity {
         "${audio.time.hour.toString().padLeft(2, '0')}:${audio.time.minute.toString().padLeft(2, '0')}";
 
     String title = "Registrazione $formattedDate - $formattedTime";
+    int currentTimestamp = DateTime.now().millisecondsSinceEpoch;
+
     return AudioEntity(
+      dateTime: currentTimestamp,
       date: audio.date,
       note: audio.note ?? "",
       recordingPath: audio.recordingPath,

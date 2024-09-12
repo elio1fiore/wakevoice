@@ -14,6 +14,7 @@ _$AudioEntityImpl _$$AudioEntityImplFromJson(Map<String, dynamic> json) =>
       time: const TimeOfDayConverter().fromJson(json['time'] as String),
       recordingPath: json['recordingPath'] as String,
       note: json['note'] as String,
+      dateTime: (json['dateTime'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$AudioEntityImplToJson(_$AudioEntityImpl instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$AudioEntityImplToJson(_$AudioEntityImpl instance) =>
       'time': const TimeOfDayConverter().toJson(instance.time),
       'recordingPath': instance.recordingPath,
       'note': instance.note,
+      'dateTime': instance.dateTime,
     };

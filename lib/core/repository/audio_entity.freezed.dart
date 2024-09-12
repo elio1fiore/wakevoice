@@ -28,6 +28,7 @@ mixin _$AudioEntity {
   TimeOfDay get time => throw _privateConstructorUsedError;
   String get recordingPath => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
+  int get dateTime => throw _privateConstructorUsedError;
 
   /// Serializes this AudioEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +52,8 @@ abstract class $AudioEntityCopyWith<$Res> {
       DateTime date,
       @TimeOfDayConverter() TimeOfDay time,
       String recordingPath,
-      String note});
+      String note,
+      int dateTime});
 }
 
 /// @nodoc
@@ -75,6 +77,7 @@ class _$AudioEntityCopyWithImpl<$Res, $Val extends AudioEntity>
     Object? time = null,
     Object? recordingPath = null,
     Object? note = null,
+    Object? dateTime = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -101,6 +104,10 @@ class _$AudioEntityCopyWithImpl<$Res, $Val extends AudioEntity>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -119,7 +126,8 @@ abstract class _$$AudioEntityImplCopyWith<$Res>
       DateTime date,
       @TimeOfDayConverter() TimeOfDay time,
       String recordingPath,
-      String note});
+      String note,
+      int dateTime});
 }
 
 /// @nodoc
@@ -141,6 +149,7 @@ class __$$AudioEntityImplCopyWithImpl<$Res>
     Object? time = null,
     Object? recordingPath = null,
     Object? note = null,
+    Object? dateTime = null,
   }) {
     return _then(_$AudioEntityImpl(
       id: freezed == id
@@ -167,6 +176,10 @@ class __$$AudioEntityImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -180,7 +193,8 @@ class _$AudioEntityImpl extends _AudioEntity {
       required this.date,
       @TimeOfDayConverter() required this.time,
       required this.recordingPath,
-      required this.note})
+      required this.note,
+      required this.dateTime})
       : super._();
 
   factory _$AudioEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -200,10 +214,12 @@ class _$AudioEntityImpl extends _AudioEntity {
   final String recordingPath;
   @override
   final String note;
+  @override
+  final int dateTime;
 
   @override
   String toString() {
-    return 'AudioEntity(id: $id, title: $title, date: $date, time: $time, recordingPath: $recordingPath, note: $note)';
+    return 'AudioEntity(id: $id, title: $title, date: $date, time: $time, recordingPath: $recordingPath, note: $note, dateTime: $dateTime)';
   }
 
   @override
@@ -217,13 +233,15 @@ class _$AudioEntityImpl extends _AudioEntity {
             (identical(other.time, time) || other.time == time) &&
             (identical(other.recordingPath, recordingPath) ||
                 other.recordingPath == recordingPath) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, date, time, recordingPath, note);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, date, time, recordingPath, note, dateTime);
 
   /// Create a copy of AudioEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -248,7 +266,8 @@ abstract class _AudioEntity extends AudioEntity {
       required final DateTime date,
       @TimeOfDayConverter() required final TimeOfDay time,
       required final String recordingPath,
-      required final String note}) = _$AudioEntityImpl;
+      required final String note,
+      required final int dateTime}) = _$AudioEntityImpl;
   const _AudioEntity._() : super._();
 
   factory _AudioEntity.fromJson(Map<String, dynamic> json) =
@@ -268,6 +287,8 @@ abstract class _AudioEntity extends AudioEntity {
   String get recordingPath;
   @override
   String get note;
+  @override
+  int get dateTime;
 
   /// Create a copy of AudioEntity
   /// with the given fields replaced by the non-null parameter values.
